@@ -1,5 +1,8 @@
 # Reference: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/submissions/
 
+# Given an array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Return the indices of the two numbers (1-indexed) as an integer array answer of size 2, where 1 <= answer[0] < answer[1] <= numbers.length.
+# The tests are generated such that there is exactly one solution. You may not use the same element twice.
+
 
 def twoSum_1(numbers, target):
     # Create a dictionary to store differences between target and element
@@ -51,33 +54,26 @@ def twoSum_2(numbers, target):
     # Memory Usage: 14.4 MB, less than 12.53% of Python online submissions for Two Sum II - Input array is sorted.
 
 
-test_cases = [{
-    'inputs': {
-        'numbers': [2, 7, 11, 15],
-        'target': 9
-    },
-    'expected': (1, 2)
-}, {
-    'inputs': {
-        'numbers': [2, 3, 4],
-        'target': 6
-    },
-    'expected': (1, 3)
-}, {
-    'inputs': {
-        'numbers': [-1, 0],
-        'target': -1
-    },
-    'expected': (1, 2)
-}]
+def test_func():
+    test_cases = [{
+        'input': {
+            'numbers': [2, 7, 11, 15],
+            'target': 9
+        },
+        'output': (1, 2)
+    }, {
+        'input': {
+            'numbers': [2, 3, 4],
+            'target': 6
+        },
+        'output': (1, 3)
+    }, {
+        'input': {
+            'numbers': [-1, 0],
+            'target': -1
+        },
+        'output': (1, 2)
+    }]
 
-for i, test_case in enumerate(test_cases):
-    print(f'Test case {i+1}')
-    # print(test_case)
-    ret = twoSum_1(**test_case['inputs'])
-    if ret == test_case['expected']:
-        print('Passed')
-    else:
-        print('Failed!')
-        print(f'Obtained: {ret} Expected: {test_case["expected"]}')
-        break
+    for test_case in test_cases:
+        assert twoSum_2(**test_case['input']) == test_case['output']

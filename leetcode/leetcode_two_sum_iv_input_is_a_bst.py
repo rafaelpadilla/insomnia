@@ -1,10 +1,12 @@
-# Reference: two-sum-iv-input-is-a-bst
+# https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+
 # Given the root of a Binary Search Tree and a target number k, return true if there exist two elements in the BST such that their sum is equal to the given target.
 
 from utils import BinaryTree as Tree
 
 
 class Solution_1(object):
+    # Solução utilizando uma função recursiva.
     def verify_node(self, node, k):
         return node.val in self.my_dict
 
@@ -25,6 +27,7 @@ class Solution_1(object):
 
 
 class Solution_2(object):
+    # Solução loop.
     def findTarget(self, root, k):
         s = set()
         if root is None:
@@ -64,49 +67,42 @@ class Solution_3:
         return False
 
 
-test_cases = [{
-    'inputs': {
-        'root': Tree([5, 3, 6, 2, 4, None, 7]).root,
-        'k': 9
-    },
-    'expected': True,
-}, {
-    'inputs': {
-        'root': Tree([5, 3, 6, 2, 4, None, 7]).root,
-        'k': 28
-    },
-    'expected': False
-}, {
-    'inputs': {
-        'root': Tree([2, 1, 3]).root,
-        'k': 4
-    },
-    'expected': True
-}, {
-    'inputs': {
-        'root': Tree([2, 1, 3]).root,
-        'k': 1
-    },
-    'expected': False
-}, {
-    'inputs': {
-        'root': Tree([2, 1, 3]).root,
-        'k': 3
-    },
-    'expected': True
-}]
+def test_func():
+    test_cases = [{
+        'input': {
+            'root': Tree([5, 3, 6, 2, 4, None, 7]).root,
+            'k': 9
+        },
+        'expected': True,
+    }, {
+        'input': {
+            'root': Tree([5, 3, 6, 2, 4, None, 7]).root,
+            'k': 28
+        },
+        'expected': False
+    }, {
+        'input': {
+            'root': Tree([2, 1, 3]).root,
+            'k': 4
+        },
+        'expected': True
+    }, {
+        'input': {
+            'root': Tree([2, 1, 3]).root,
+            'k': 1
+        },
+        'expected': False
+    }, {
+        'input': {
+            'root': Tree([2, 1, 3]).root,
+            'k': 3
+        },
+        'expected': True
+    }]
 
-# solution = Solution_1()
-# solution = Solution_2()
-solution = Solution_3()
+    # solution = Solution_1()
+    # solution = Solution_2()
+    solution = Solution_3()
 
-for i, test_case in enumerate(test_cases):
-    print(f'Test case {i+1}')
-    # print(test_case)
-    ret = solution.findTarget(**test_case['inputs'])
-    if ret == test_case['expected']:
-        print('Passed')
-    else:
-        print('Failed!')
-        print(f'Obtained: {ret} Expected: {test_case["expected"]}')
-        break
+    for test_case in test_cases:
+        assert solution.findTarget(**test_case['input']) == test_case['expected']

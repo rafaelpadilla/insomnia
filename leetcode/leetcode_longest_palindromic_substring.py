@@ -1,3 +1,7 @@
+# https://leetcode.com/problems/longest-palindromic-substring/
+
+# Given a string s, return the longest palindromic substring in s.
+
 
 def longestPalindrome2(s):
     len_s = len(s)
@@ -19,7 +23,7 @@ def longestPalindrome2(s):
 
         if length > res_len:
             res_len = length
-            res = s[anchor-abs(left):anchor+abs(right)-1]
+            res = s[anchor - abs(left):anchor + abs(right) - 1]
         anchor += 1
         right, left = anchor, anchor
         length = 1
@@ -36,12 +40,12 @@ def longestPalindrome(s):
         left = anchor - 1
         right = anchor + 1
 
-        while right <= len_s -1 and s[right] == s[anchor]:
+        while right <= len_s - 1 and s[right] == s[anchor]:
             right = right + 1
             res = s[anchor:right]
 
-        while left >= 0 and right <= len_s -1 and s[left] == s[right]:
-            res = s[left:right+1]
+        while left >= 0 and right <= len_s - 1 and s[left] == s[right]:
+            res = s[left:right + 1]
             left = left - 1
             right = right + 1
 
@@ -49,23 +53,36 @@ def longestPalindrome(s):
 
     return final_res
 
-substring = 'babad' # bab
-print(longestPalindrome(substring))
 
-substring = '' # ''
-print(longestPalindrome(substring))
+def test_func():
+    test_cases = [{
+        'input': 'babad',
+        'output': 'bab'
+    }, {
+        'input': 'cbbd',
+        'output': 'bb'
+    }, {
+        'input': 'a',
+        'output': 'a'
+    }, {
+        'input': 'ac',
+        'output': 'a'
+    }, {
+        'input': 'abcba',
+        'output': 'abcba'
+    }, {
+        'input': 'ccc',
+        'output': 'ccc'
+    }, {
+        'input': 'bb',
+        'output': 'bb'
+    }, {
+        'input': 'ac',
+        'output': 'a'
+    }, {
+        'input': '',
+        'output': ''
+    }]
 
-substring = 'ac' # a
-print(longestPalindrome(substring))
-
-substring = 'bb' # bb
-print(longestPalindrome(substring))
-
-substring = 'ccc' # ccc
-print(longestPalindrome(substring))
-
-substring = 'abcba' # abcba
-print(longestPalindrome(substring))
-
-substring = 'cbbd' # bb
-print(longestPalindrome(substring))
+    for test_case in test_cases:
+        assert longestPalindrome(test_case['input']) == test_case['output']

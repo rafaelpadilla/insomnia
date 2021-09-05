@@ -2,6 +2,7 @@
 
 # You are given the root of a binary search tree (BST) and an integer val.
 # Find the node in the BST that the node's value equals val and return the subtree rooted with that node. If such a node does not exist, return null.
+
 from utils import BinaryTree as Tree
 
 
@@ -30,28 +31,22 @@ class Solution_1(object):
         return self.res
 
 
-test_cases = [{
-    'inputs': {
-        'root': Tree([4, 2, 7, 1, 3]).root,
-        'val': 2
-    },
-    'expected': Tree([2, 1, 3]).root
-}, {
-    'inputs': {
-        'root': Tree([4, 2, 7, 1, 3]).root,
-        'val': 5
-    },
-    'expected': Tree([]).root
-}]
+def test_func():
+    test_cases = [{
+        'input': {
+            'root': Tree([4, 2, 7, 1, 3]).root,
+            'val': 2
+        },
+        'output': Tree([2, 1, 3]).root
+    }, {
+        'input': {
+            'root': Tree([4, 2, 7, 1, 3]).root,
+            'val': 5
+        },
+        'output': Tree([]).root
+    }]
 
-solution = Solution_1()
+    solution = Solution_1()
 
-for i, test_case in enumerate(test_cases):
-    print(f'Test case {i+1}')
-    ret = solution.searchBST(**test_case['inputs'])
-    if ret == test_case['expected']:
-        print('Passed')
-    else:
-        print('Failed!')
-        print(f'Obtained: {ret} Expected: {test_case["expected"]}')
-        break
+    for test_case in test_cases:
+        assert solution.searchBST(**test_case['input']) == test_case['output']
